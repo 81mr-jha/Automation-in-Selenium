@@ -21,7 +21,7 @@ namespace eCommerceTesting.Setup
             if (driver != null)
             {
                 driver.Quit();
-                driver.Dispose(); // explicitly dispose
+                driver.Dispose();
             }
         }
     }

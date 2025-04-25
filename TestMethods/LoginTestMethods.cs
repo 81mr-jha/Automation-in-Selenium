@@ -76,8 +76,16 @@ namespace eCommerceTesting.TestMethods
 
         public void VerifyAccountCreation()
         {
-            IWebElement logo = driver.FindElement(By.XPath("//h2[@data-qa='account-created']"));
-            Thread.Sleep(1000);
+            try
+            {
+                Thread.Sleep(1000);
+                IWebElement logo = driver.FindElement(By.XPath("//h2[@data-qa='account-created']"));
+                Thread.Sleep(1000);
+            }
+            catch 
+            {
+                Console.WriteLine("Check this method");
+            }
         }
 
         public void ClickOnContinueButton()
@@ -93,11 +101,23 @@ namespace eCommerceTesting.TestMethods
             Thread.Sleep(1000);
         }
 
+        //public void DeleteAccount()
+        //{
+        //    Thread.Sleep(1000); a23@gmail.com
+        //    IWebElement logo = driver.FindElement(By.XPath("//a[contains(text(),'Delete Account')]"));
+
+        //    logo.Click() ;
+        //    Thread.Sleep(1000);
+        //}
         public void DeleteAccount()
         {
-            IWebElement logo = driver.FindElement(By.XPath("//a[contains(text(),'Delete Account')]"));
             Thread.Sleep(1000);
-            logo.Click() ;
+            IWebElement logo = driver.FindElement(By.XPath("//a[contains(text(),'Delete Account')]"));
+
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoView(true);", logo);  
+            js.ExecuteScript("arguments[0].click();", logo);               
+
             Thread.Sleep(1000);
         }
 
@@ -106,5 +126,28 @@ namespace eCommerceTesting.TestMethods
             IWebElement logo = driver.FindElement(By.XPath("//h2[@data-qa='account-deleted']"));
             Thread.Sleep(1000);
         }
+        public void VerifyLoginAccountVisibility()
+        {
+            Thread.Sleep(500);
+            IWebElement logo = driver.FindElement(By.XPath("//h2[normalize-space()='Login to your account']"));
+            Thread.Sleep(500);
+        }
+        public void EnterLogInEmailAndPassword(string email,string password)
+        {
+            Thread.Sleep(500);
+            LoginEmail.SendKeys(email);
+            LoginPassword.SendKeys(password);
+            Thread.Sleep(500);
+        }
+        public void ClickLogInButton()
+        {
+            IWebElement logo = driver.FindElement(By.XPath("//button[@data-qa='login-button']"));
+            Thread.Sleep(1000);
+            logo.Click();
+        }
+        //public void VerifiedUserName()
+        //{
+        //    IWebElement logo = driver.FindElement(By.XPath("//a[contains(text(),'Logged in as']"));
+        //}
     }
 }

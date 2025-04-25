@@ -35,5 +35,14 @@ namespace eCommerceTesting.Reusable
         public IWebElement CreateAccountButton => driver.FindElement(By.XPath("//button[@data-qa='create-account']"));
         public IWebElement SelectTitle => driver.FindElement(By.Id("id_gender1"));
 
+        //login selector
+
+        public IWebElement LoginEmail => driver.FindElement(By.XPath("//input[@data-qa='login-email']"));
+        public IWebElement LoginPassword => driver.FindElement(By.XPath("//input[@data-qa='login-password']"));
+        public IWebElement LoginButton => driver.FindElement(By.XPath("//button[@data-qa='login-button']"));
+
+        //public IWebElement LoginEmail => driver.FindElement(By.XPath("//input[@data-qa='login-email']"));
+        //public IWebElement LoginPassword => driver.FindElement(By.XPath("//input[@data-qa='']"))
+
     }
 }

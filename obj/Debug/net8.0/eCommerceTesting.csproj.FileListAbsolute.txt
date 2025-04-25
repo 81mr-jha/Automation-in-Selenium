@@ -102,3 +102,4 @@ D:\Automation-testing\eCommerceTesting\obj\Debug\net8.0\refint\eCommerceTesting.
 D:\Automation-testing\eCommerceTesting\obj\Debug\net8.0\eCommerceTesting.pdb
 D:\Automation-testing\eCommerceTesting\obj\Debug\net8.0\eCommerceTesting.genruntimeconfig.cache
 D:\Automation-testing\eCommerceTesting\obj\Debug\net8.0\ref\eCommerceTesting.dll
+D:\Automation-testing\eCommerceTesting\obj\Debug\net8.0\eCommerceTesting.sourcelink.json

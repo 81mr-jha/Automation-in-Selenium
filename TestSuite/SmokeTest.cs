@@ -1,17 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using eCommerceTesting.Setup;
-using eCommerceTesting.TestMethods;
+﻿using eCommerceTesting.TestMethods;
 using eCommerceTesting.TestData;
+using OpenQA.Selenium.Chrome;
 
 namespace eCommerceTesting.TestSuite
 {
-    public class SmokeTest : LoginTestMethods 
+
+    [TestFixture]
+    public class SmokeTest : LoginTestMethods
     {
-        TestCreds creds ;
+        TestCreds creds;
+        public static string email = "mayank2@gmail.com";
+        public static string password = "P@ssw0rd";
+
+        public SmokeTest() : base(null) { }
+
+        [OneTimeSetUp]
+        public void Init()
+        {
+            driver = new ChromeDriver();
+            base.driver = driver;
+            creds = new TestCreds(driver);
+        }
 
         [Test, Order(1)]
         public void RegisterUser()
@@ -20,16 +29,35 @@ namespace eCommerceTesting.TestSuite
             CheckHomePageVisibleOrNot();
             ClickSignupAndLoginButton();
             VerifyNewUserSignUPHeading();
-            EnterNameAndEmail("Mayank", "mayank342@gmail.com");
+            EnterNameAndEmail("Mayank", email);
             ClickSignUpButton();
             VerifyAccountInformation();
-            creds = new TestCreds(driver);
-            creds.EnterAccountInformation();
+            creds.EnterAccountInformation(password);
             ClickOnContinueButton();
             VerifyAccountCreation();
             DeleteAccount();
             ClickOnContinueButton();
         }
 
+        [Test, Order(2)]
+        public void LoginWithCorrectEmailAndPassword()
+        {
+            LaunchURL();
+            CheckHomePageVisibleOrNot();
+            ClickSignupAndLoginButton();
+            VerifyLoginAccountVisibility();
+            EnterLogInEmailAndPassword(email, password);
+            ClickLogInButton();
+            LogInAsUserName();
+            DeleteAccount();
+            ClickOnContinueButton();
+        }
+
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            driver.Quit();
+        }
     }
 }
+
